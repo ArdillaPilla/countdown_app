@@ -6,42 +6,62 @@
     <title>Countdown Generator</title>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Firebase -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
+    <!-- Firebase (compat libraries to provide global `firebase` and `db`) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Your web app's Firebase configuration (same project as used elsewhere)
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
             apiKey: "AIzaSyBNqhJf0qLlV33HmOVQi5-IhDm3auk12BA",
             authDomain: "countdown-app-6e1c8.firebaseapp.com",
             projectId: "countdown-app-6e1c8",
-            storageBucket: "countdown-app-6e1c8.firebasestorage.app",
+            storageBucket: "countdown-app-6e1c8.appspot.com",
             messagingSenderId: "50853670534",
             appId: "1:50853670534:web:fac2bb4727a76809ff6b07",
             measurementId: "G-K566KP14X5"
         };
 
-        // Initialize Firebase
+        // Initialize Firebase using the compat API and expose `db` globally
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        // make db accessible to non-module scripts (main.js, countdown.js)
+        window.db = firebase.firestore();
     </script>
 </head>
 <body>
     <main>
-        <h1>Genera tu Countdown</h1>
-        <input type="text" id="titulo" placeholder="Título del evento">
-        <input type="datetime-local" id="fecha">
-        <button type="button" onclick="crearCountdown()">Generar Countdown</button>
+        <header class="app-header">
+            <h1>Genera tu Countdown</h1>
+            <p class="lead">Crea y comparte temporizadores personalizados</p>
+        </header>
 
-        <div id="link"></div>
+        <section class="creator">
+            <input type="text" id="titulo" placeholder="Título del evento" aria-label="Título del evento">
+            <input type="datetime-local" id="fecha" aria-label="Fecha y hora">
+            <button type="button" onclick="crearCountdown(db)" class="btn-primary">Generar Countdown</button>
+            <div id="link" class="share-link"></div>
+        </section>
 
-        <h2>Countdowns creados</h2>
-        <div id="lista-countdowns"></div>
+        <section class="list-area">
+            <div class="list-controls">
+                <div class="search-wrapper">
+                    <input type="search" id="search" placeholder="Buscar countdowns por título..." aria-label="Buscar">
+                </div>
+                <div class="page-size-wrapper">
+                    <label for="page-size">Mostrar:</label>
+                    <select id="page-size" aria-label="Tamaño de página">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span class="results-count" id="results-count"></span>
+                </div>
+            </div>
+
+            <h2>Countdowns creados</h2>
+            <div id="lista-countdowns" class="cards-grid"></div>
+
+            <nav id="pagination" class="pagination" aria-label="Paginación"></nav>
+        </section>
     </main>
 
     <script src="js/main.js"></script>
