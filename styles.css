@@ -1,43 +1,46 @@
 :root {
-    --bg-color: #0d1117;
-    --text-color: #ffffff;
-    --accent-color: #58a6ff;
+    --color-bg: #f0f0f0;
+    --color-text: #333;
+    --color-accent: #007bff;
 }
 
 body {
-    background: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: Arial, sans-serif;
-    margin: 0;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.container {
+main {
     text-align: center;
-    width: 90%;
-    max-width: 500px;
-}
-
-input, button {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 button {
-    background: var(--accent-color);
+    background-color: var(--color-accent);
     color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
     cursor: pointer;
-    font-weight: bold;
+    border-radius: 5px;
 }
 
-#contador {
-    font-size: 2.2rem;
-    margin-top: 20px;
+button:hover {
+    background-color: #0056b3;
+}
+
+input {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
 }
