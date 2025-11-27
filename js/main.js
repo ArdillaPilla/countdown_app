@@ -1,3 +1,5 @@
+const lista = document.getElementById("lista-countdowns");
+
 function crearCountdown() {
     const titulo = document.getElementById("titulo").value.trim();
     const fecha = document.getElementById("fecha").value;
@@ -14,7 +16,6 @@ function crearCountdown() {
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then((docRef) => {
-        console.log("Countdown guardado con ID:", docRef.id);
         const url = `countdown.html?id=${docRef.id}`;
         document.getElementById("link").innerHTML =
             `<a href="${url}" target="_blank">Abrir countdown</a>`;
@@ -23,3 +24,16 @@ function crearCountdown() {
         console.error("Error guardando countdown:", error);
     });
 }
+
+// Listar todos los countdowns
+db.collection("countdowns")
+  .orderBy("createdAt", "desc")
+  .onSnapshot((snapshot) => {
+    lista.innerHTML = "";
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.innerHTML = `<a href="countdown.html?id=${doc.id}">${data.title} - ${data.date}</a>`;
+        lista.appendChild(div);
+    });
+});
