@@ -1,7 +1,6 @@
 function crearCountdown() {
     const titulo = document.getElementById("titulo").value.trim();
     const fecha = document.getElementById("fecha").value;
-    const lista = document.getElementById("lista-countdowns");
 
     if (!titulo || !fecha) {
         alert("Rellena el título y la fecha.");
