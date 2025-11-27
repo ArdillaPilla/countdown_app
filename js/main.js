@@ -9,6 +9,7 @@ function crearCountdown() {
         return;
     }
 
+    // Guardar en Firestore
     db.collection("countdowns").add({
         title: titulo,
         date: fecha,
