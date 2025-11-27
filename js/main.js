@@ -17,6 +17,7 @@ function crearCountdown(db) {
         return;
     }
 
+    // Guardar en Firestore
     db.collection("countdowns").add({
         title: titulo,
         date: fecha,

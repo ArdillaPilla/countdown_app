@@ -30,32 +30,12 @@
 </head>
 <body>
     <main>
-        <header class="app-header">
-            <h1>Genera tu Countdown</h1>
-            <p class="lead">Crea y comparte temporizadores personalizados</p>
-        </header>
+        <h1>Genera tu Countdown</h1>
+        <input type="text" id="titulo" placeholder="Título del evento">
+        <input type="datetime-local" id="fecha">
+        <button type="button" onclick="crearCountdown()">Generar Countdown</button>
 
-        <section class="creator">
-            <input type="text" id="titulo" placeholder="Título del evento" aria-label="Título del evento">
-            <input type="datetime-local" id="fecha" aria-label="Fecha y hora">
-            <button type="button" onclick="crearCountdown(db)" class="btn-primary">Generar Countdown</button>
-            <div id="link" class="share-link"></div>
-        </section>
-
-        <section class="list-area">
-            <div class="list-controls">
-                <div class="search-wrapper">
-                    <input type="search" id="search" placeholder="Buscar countdowns por título..." aria-label="Buscar">
-                </div>
-                <div class="page-size-wrapper">
-                    <label for="page-size">Mostrar:</label>
-                    <select id="page-size" aria-label="Tamaño de página">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                    </select>
-                    <span class="results-count" id="results-count"></span>
-                </div>
-            </div>
+        <button type="button" onclick="crearCountdown()">Generar Countdown</button>
 
             <h2>Countdowns creados</h2>
             <div id="lista-countdowns" class="cards-grid"></div>
