@@ -1,16 +1,31 @@
 :root {
-    --color-bg: #0f1724; /* dark slate */
-    --color-card: #0b1220;
-    --color-muted: #9aa4b2;
-    --color-text: #e6eef6;
-    --color-accent: #6dd3ff; /* soft cyan */
+    /* primary theme colors */
+    --color-bg: #8400ff; /* page background */
+    --color-card: #ffffff; /* card / main surface */
+    --color-muted: #ffffff; /* subdued text */
+    --color-text: #e6eef6; /* primary text */
+    --color-accent: #ae00ff; /* main accent */
+    --color-accent-2: #ff9900; /* second accent stop */
+    --accent-rgb: 109,211,255; /* used for rgba(...) expressions */
+    --shadow-rgb: 2,6,23; /* dark shadow */
+    --bg-grad-1: 13,23,36; /* background gradient stops */
+    --bg-grad-2: 7,10,16;
+    --glass-weak: rgba(255,255,255,0.01);
+
+    /* helpers / translucents */
     --glass: rgba(255,255,255,0.04);
     --glass-2: rgba(255,255,255,0.02);
+    --glass-strong: rgba(255,255,255,0.08);
+    --card-border: rgba(255,255,255,0.03);
+
+    /* accent text color when placed over the accent background */
+    --accent-foreground: #041226;
 }
 
 body {
-    background: radial-gradient(1200px 600px at 10% 10%, rgba(109,211,255,0.06), transparent),
-                linear-gradient(180deg, rgba(13,23,36,0.6), rgba(7,10,16,0.8));
+    background-color: var(--color-bg);
+    background-image: radial-gradient(1200px 600px at 10% 10%, rgba(var(--accent-rgb),0.06), transparent),
+                      linear-gradient(180deg, rgba(var(--bg-grad-1),0.6), rgba(var(--bg-grad-2),0.8));
     color: var(--color-text);
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     display: flex;
@@ -24,17 +39,17 @@ body {
 main {
     width: 100%;
     max-width: 1000px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    background: linear-gradient(180deg, var(--glass), var(--glass-2));
     border-radius: 16px;
     padding: 2rem;
-    box-shadow: 0 10px 40px rgba(2,6,23,0.6);
-    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 10px 40px rgba(var(--shadow-rgb),0.6);
+    border: 1px solid var(--glass);
 }
 
 button {
     background-color: transparent;
     color: var(--color-text);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--glass-strong);
     padding: 0.55rem 0.9rem;
     margin: 0.5rem 0;
     cursor: pointer;
@@ -42,9 +57,9 @@ button {
 }
 
 .btn-primary {
-    background: linear-gradient(90deg,var(--color-accent),#4bb8ff);
-    color: #041226;
-    box-shadow: 0 6px 18px rgba(109,211,255,0.12);
+    background: linear-gradient(45deg,var(--color-accent), var(--color-accent-2));
+    color: var(--accent-foreground);
+    box-shadow: 0 6px 18px rgba(var(--accent-rgb),0.12);
     border: none;
 }
 
@@ -54,8 +69,8 @@ input, select {
     padding: 0.6rem 0.8rem;
     margin: 0.4rem 0;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.06);
-    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--glass);
+    background: var(--glass-2);
     color: var(--color-text);
 }
 
@@ -77,15 +92,15 @@ input::placeholder { color: var(--color-muted); }
 .page-size-wrapper { display:flex; gap:0.5rem; align-items:center; color:var(--color-muted) }
 
 .cards-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-top:0.5rem }
-.cards-grid .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); padding:0.8rem; border-radius:10px }
+.cards-grid .card { background: linear-gradient(180deg, var(--glass-2), var(--glass-weak)); border:1px solid var(--card-border); padding:0.8rem; border-radius:10px }
 .card a { color: var(--color-text); font-weight:600; text-decoration:none }
 .card .meta { color: var(--color-muted); font-size:0.85rem; margin-top:6px }
 
 .pagination { display:flex; gap:8px; align-items:center; justify-content:center; margin-top:12px }
-.pagination button { padding: 0.5rem 0.6rem; border-radius:6px; background:var(--glass); border:1px solid rgba(255,255,255,0.03); }
+.pagination button { padding: 0.5rem 0.6rem; border-radius:6px; background:var(--glass); border:1px solid var(--card-border); }
 .pagination button[disabled] { opacity:0.35; cursor:default }
 .pagination .page-number { font-weight:700; padding:0.4rem 0.6rem; }
-.pagination .active { background: linear-gradient(90deg,var(--color-accent),#4bb8ff); color:#041226; }
+.pagination .active { background: linear-gradient(90deg,var(--color-accent), var(--color-accent-2)); color:var(--accent-foreground); }
 
 .results-count { font-size:0.9rem; color:var(--color-muted); margin-left:0.5rem }
 
