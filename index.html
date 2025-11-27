@@ -23,9 +23,8 @@
             measurementId: "G-K566KP14X5"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
     </script>
 
     <meta charset="UTF-8">
@@ -51,7 +50,7 @@
         <input type="text" id="titulo" placeholder="Título del evento">
         <input type="datetime-local" id="fecha">
 
-        <button onclick="crearCountdown()">Generar Countdown</button>
+        <button type="button" onclick="crearCountdown()">Generar Countdown</button>
 
         <p id="link"></p>
     </div>
