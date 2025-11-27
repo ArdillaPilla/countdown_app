@@ -6,20 +6,22 @@
     <title>Countdown</title>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Firebase -->
+    <!-- Firebase (compat libs and same project config as index.html) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_PROYECTO.firebaseapp.com",
-            projectId: "TU_PROYECTO",
-            storageBucket: "TU_PROYECTO.appspot.com",
-            messagingSenderId: "XXXX",
-            appId: "1:XXXX:web:XXXXX"
+            apiKey: "AIzaSyBNqhJf0qLlV33HmOVQi5-IhDm3auk12BA",
+            authDomain: "countdown-app-6e1c8.firebaseapp.com",
+            projectId: "countdown-app-6e1c8",
+            storageBucket: "countdown-app-6e1c8.appspot.com",
+            messagingSenderId: "50853670534",
+            appId: "1:50853670534:web:fac2bb4727a76809ff6b07",
+            measurementId: "G-K566KP14X5"
         };
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        // Expose db to global scope for countdown.js
+        window.db = firebase.firestore();
     </script>
 </head>
 <body>
