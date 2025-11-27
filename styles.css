@@ -1,0 +1,43 @@
+:root {
+    --bg-color: #0d1117;
+    --text-color: #ffffff;
+    --accent-color: #58a6ff;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+button {
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#contador {
+    font-size: 2.2rem;
+    margin-top: 20px;
+}
